@@ -1,0 +1,96 @@
+// Program 1
+// CIS 199-01
+// Due: 02/13/2024
+// By: R2412
+
+using BiggSmilesDental;
+using System;
+
+namespace BiggSmilesDental
+{
+    // <summary>
+    // Represents a price quote calculator for dental care services.
+    // The calculator collects information about the client's dental care needs
+    // and calculates the total cost of care, taking into account various factors
+    // such as procedure type, duration, material needed, additional staff, and discounts.
+    // </summary>
+    public class PriceQuoteCalculator
+    {
+        private const double ConsultationFee = 100.0;
+        private const double DentistFeePerHour = 50.0;
+        private const double StaffFeePerHour = 25.0;
+        private const double MaterialCostPerOunce = 0.10;
+        private const double SeniorCitizenDiscount = 0.10;
+
+        // <summary>
+        // Calculates the total cost of dental care for the given client and procedure information.
+        //
+        // Parameters:
+        // - clientName: The name of the client.
+        // - procedureType: The type of procedure (e.g., cleaning, filling, crown, etc.).
+        // - duration: The duration of the procedure in hours.
+        // - materialNeeded: The amount of material needed in ounces.
+        // - additionalStaffNeeded: The number of additional staff needed.
+        // - seniorCitizen: A flag indicating whether the client is a senior citizen (0 for no, 1 for yes).
+        //
+        // Returns:
+        // - A double representing the total cost of dental care.
+        // </summary>
+        public double CalculateTotalCost(string clientName, string procedureType, double duration, double materialNeeded, int additionalStaffNeeded, int seniorCitizen)
+        {
+            // Calculate the cost without discount.
+            double totalCost = ConsultationFee + (duration * DentistFeePerHour) + (duration * additionalStaffNeeded * StaffFeePerHour) + (materialNeeded * MaterialCostPerOunce);
+
+            // Apply discount if the client is a senior citizen.
+            if (seniorCitizen == 1)
+            {
+                totalCost -= totalCost * SeniorCitizenDiscount;
+            }
+
+            return totalCost;
+        }
+    }
+}
+
+// Example usage of the PriceQuoteCalculator class.
+
+public class Program
+{
+    public static void Main()
+    {
+        // Create an instance of the PriceQuoteCalculator.
+        var calculator = new PriceQuoteCalculator();
+
+        // Prompt the user to enter information about their dental care needs.
+        Console.WriteLine("Welcome to Bigg Smiles Dental Price Quote Calculator!");
+        Console.WriteLine("Please enter the following information:");
+
+        Console.Write("Name of client: ");
+        string clientName = Console.ReadLine();
+
+        Console.Write("Type of procedure: ");
+        string procedureType = Console.ReadLine();
+
+        Console.Write("Duration of Procedure (hours): ");
+        double duration = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Amount of material needed (ounces): ");
+        double materialNeeded = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Number of additional staff needed: ");
+        int additionalStaffNeeded = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Senior Citizen? (0 for no, 1 for yes): ");
+        int seniorCitizen = Convert.ToInt32(Console.ReadLine());
+
+        // Calculate the total cost of care using the PriceQuoteCalculator.
+        double totalCost = calculator.CalculateTotalCost(clientName, procedureType, duration, materialNeeded, additionalStaffNeeded, seniorCitizen);
+
+        // Output the quote for the total cost of care.
+        Console.WriteLine();
+        Console.WriteLine("Thank you for using Bigg Smiles Dental Price Quote Calculator!");
+        Console.WriteLine($"Client: {clientName}");
+        Console.WriteLine($"Procedure: {procedureType}");
+        Console.WriteLine($"Total Cost: ${totalCost}");
+    }
+}
