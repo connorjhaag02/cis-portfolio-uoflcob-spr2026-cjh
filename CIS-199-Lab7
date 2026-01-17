@@ -1,0 +1,68 @@
+// Lab 7
+// CIS 199-01
+// Due: 04/07/2024
+// By: R2412
+// This lab explores the use of a void method
+// that allows the user to enter a positive integer representing the number of stars per side desired.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab_7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int numStars;
+            bool isValidInput = false;
+
+            // Prompt the user for input until they enter a valid value.
+            do
+            {
+                Console.Write("Enter the number of stars per side: ");
+                string input = Console.ReadLine();
+
+                // Try to parse the input as an integer.
+                isValidInput = int.TryParse(input, out numStars);
+
+                // Check if the input is valid.
+                if (!isValidInput || numStars <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a positive integer.");
+                }
+            } while (!isValidInput || numStars <= 0);
+
+            Console.WriteLine(); // Newline for separation.
+
+            // Call the ShowSquareOfStars method passing the user's input.
+            ShowSquareOfStars(numStars);
+        }
+
+        // <summary>
+        // Outputs a solid square of asterisks to the Console.
+        //
+        // Parameters:
+        // - numStars: The number of stars per side of the square.
+        // </summary>
+        public static void ShowSquareOfStars(int numStars)
+        {
+            Console.WriteLine($"{numStars}x{numStars} Square of Asterisks");
+
+            // Loop through each row.
+            for (int i = 0; i < numStars; i++)
+            {
+                // Loop through each column.
+                for (int j = 0; j < numStars; j++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine(); // Newline for the next row.
+            }
+        }
+    }
+}
