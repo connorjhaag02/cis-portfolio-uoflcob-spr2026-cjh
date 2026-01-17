@@ -1,0 +1,77 @@
+// Lab 6
+// CIS 199-01
+// Due: 03/18/2024
+// By: R2412
+// This lab works with arrays and displays patterns separately using nested loops to generate the patterns 
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Pattern A
+            Console.WriteLine("Pattern A");
+            for (int row = 1; row <= 10; row++)
+            {
+                for (int col = 1; col <= row; col++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+            // Pattern B
+            Console.WriteLine("Pattern B");
+            for (int row = 10; row >= 1; row--)
+            {
+                for (int col = 1; col <= row; col++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+            // Pattern C
+            Console.WriteLine("Pattern C");
+            for (int row = 1; row <= 10; row++)
+            {
+                for (int space = 1; space < row; space++)
+                {
+                    Console.Write(" ");
+                }
+                for (int star = row; star <= 10; star++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+            // Pattern D
+            Console.WriteLine("Pattern D");
+            for (int row = 10; row >= 1; row--)
+            {
+                for (int space = 1; space < row; space++)
+                {
+                    Console.Write(" ");
+                }
+                for (int star = row; star <= 10; star++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+    }
+}
